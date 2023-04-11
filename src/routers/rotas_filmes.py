@@ -3,7 +3,7 @@ from src.infra.sqlalchemy.repositorios.repositorio_filme import RepositorioFilme
 from src.schemas.schemas import Filmes
 from sqlalchemy.orm import Session
 from typing import List
-from fastapi import Depends
+from fastapi import Depends, HTTPException
 from src.infra.sqlalchemy.config.database import get_db
 
 
@@ -15,7 +15,7 @@ router = APIRouter()
 def criar_filmes(filme: Filmes, db: Session = Depends(get_db)):
     filme_criado = RepositorioFilme(db).criar(filme)
     return filme_criado
-
+                                                     
 # LISTAR FILME
 @router.get('/filmes', response_model=List[Filmes])
 def listar_filmes( db: Session = Depends(get_db)):
@@ -27,6 +27,8 @@ def listar_filmes( db: Session = Depends(get_db)):
 @router.get('/filmes/{filme_id}')
 def obter_filme(filme_id: int, db: Session = Depends(get_db)):
     filme = RepositorioFilme(db).obter(filme_id)
+    if not filme:
+        raise HTTPException(status_code=404, detail='ID inexistente, tente novamente.')
     return filme 
 
 # DELETAR FILME
