@@ -37,6 +37,7 @@ class Filmes(BaseModel):
     genero: str
     ano: int
     nota: float
+    disponivel: bool = False    
     usuario_id: Optional[int]
     usuario: Optional[UsuarioSimples]
 

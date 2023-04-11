@@ -10,8 +10,6 @@ from src.infra.sqlalchemy.config.database import get_db
 router = APIRouter()
 
 
-
-
 # CRIAR FILME
 @router.post('/filmes')
 def criar_filmes(filme: Filmes, db: Session = Depends(get_db)):

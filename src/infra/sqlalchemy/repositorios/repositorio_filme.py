@@ -15,7 +15,8 @@ class RepositorioFilme():
                                 genero = filme.genero,
                                 ano = filme.ano,
                                 nota = filme.nota,
-                                usuario_id = filme.usuario_id
+                                usuario_id = filme.usuario_id,
+                                disponivel = filme.disponivel
                                 )
         
         self.session.add(session_filme)
@@ -44,6 +45,7 @@ class RepositorioFilme():
                                                                                     genero = filme.genero,
                                                                                     ano = filme.ano,
                                                                                     nota = filme.nota,
+                                                                                    disponivel = filme.disponivel
                                                                                     )
         self.session.execute(update_stmt)
         self.session.commit()

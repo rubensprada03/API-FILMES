@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, ForeignKey, Float
+from sqlalchemy import Column, Integer, String, ForeignKey, Float, Boolean
 from sqlalchemy.orm import relationship
 from src.infra.sqlalchemy.config.database import Base
 
@@ -13,6 +13,7 @@ class Filme(Base):
     genero = Column(String)
     ano = Column(Integer)
     nota = Column(Float)
+    disponivel = Column(Boolean, default=False)
     usuario_id = Column(Integer, ForeignKey('usuarios.id'))
 
     usuario = relationship('Usuario', back_populates='filmes')
