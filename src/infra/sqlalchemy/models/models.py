@@ -13,7 +13,7 @@ class Filme(Base):
     genero = Column(String)
     ano = Column(Integer)
     nota = Column(Float)
-    disponivel = Column(Boolean, default=False)
+    disponivel = Column(Boolean, default=False) 
     usuario_id = Column(Integer, ForeignKey('usuarios.id'))
 
     usuario = relationship('Usuario', back_populates='filmes')
@@ -28,3 +28,22 @@ class Usuario(Base):
     telefone = Column(String)
 
     filmes = relationship('Filme', back_populates='usuario')
+    alugueis = relationship('Aluguel', back_populates='usuario')
+
+
+class Aluguel(Base):
+
+    __tablename__ = 'aluguel'
+
+    id = Column(Integer, primary_key=True, index=True)
+    compra = Column(Boolean, default=False)
+    dias = Column(Integer)
+    qualidade = Column(String)
+
+    usuario_id = Column(Integer, ForeignKey('usuarios.id', name='fk_aluguel_usuario'))
+    filme_id = Column(Integer, ForeignKey('filmes.id', name='fk_aluguel_filme'))
+
+
+    usuario = relationship('Usuario', back_populates='alugueis')
+    filme = relationship('Filme')
+    

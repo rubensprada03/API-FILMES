@@ -39,6 +39,6 @@ def remover_filme(filme_id: int, db:Session = Depends(get_db)):
 
 # ATUALIZAR FILME   
 @router.put('/filmes/{id}')
-def atualizar_produto(id:int, filme: Filmes, session: Session = Depends(get_db)):
+def atualizar_filme(id:int, filme: Filmes, session: Session = Depends(get_db)):
     RepositorioFilme(session).editar(id, filme)
     return {"msg":"produto atualizado"}, filme

@@ -44,3 +44,15 @@ class Filmes(BaseModel):
     class Config:
         orm_mode = True
 
+class Aluguel(BaseModel):
+    id: Optional[int] = None
+    compra: bool = False
+    dias: int
+    qualidade: str
+
+    usuario_id: Optional[int]
+    filme_id: Optional[int]
+
+    usuario: Optional[UsuarioSimples]
+    filme: Optional[FilmeSimples]
+
