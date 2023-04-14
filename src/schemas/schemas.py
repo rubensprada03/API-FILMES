@@ -29,6 +29,14 @@ class UsuarioSimples(BaseModel):
         orm_mode = True
 
 
+class LoginData(BaseModel):
+    senha: str
+    telefone: str
+
+    class Config:
+        orm_mode = True
+
+
 class Filmes(BaseModel):
     id: Optional[int] = None
     nome: str

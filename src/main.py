@@ -1,7 +1,8 @@
 from fastapi import FastAPI, Depends
+from src.routers import rotas_auth
 from src.infra.sqlalchemy.config.database import get_db
 from fastapi.middleware.cors import CORSMiddleware
-from src.routers import rotas_filmes, rotas_usuarios, rotas_pedidos
+from src.routers import rotas_filmes, rotas_pedidos, rotas_auth
 
 
 app = FastAPI()
@@ -18,8 +19,8 @@ app.add_middleware(CORSMiddleware,
 # ROTAS FILMES
 app.include_router(rotas_filmes.router)
 
-# USUARIOS
-app.include_router(rotas_usuarios.router)
+# SEGURANÇA
+app.include_router(rotas_auth.router, prefix="/auth")
 
 # ROTAS PEDIDOS 
 app.include_router(rotas_pedidos.router)
