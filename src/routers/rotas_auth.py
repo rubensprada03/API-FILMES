@@ -21,7 +21,7 @@ def criar_usuario(usuario: Usuario, session: Session = Depends(get_db)):
     usuario.senha = hash_provider.gerar_hash(usuario.senha)
     usuario_criado = RepositorioUsuario(session).criar(usuario)
     return usuario_criado
-    
+
 
 
 @router.post('/token')
